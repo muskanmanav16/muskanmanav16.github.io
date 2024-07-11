@@ -3,8 +3,9 @@
 # Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
-title: Muskan Manav # Website name
 baseURL: 'https://muskanmanav16.github.io/' # Website URL
+title: Muskan Manav # Website name
+#theme: your-theme-name # Ensure this matches your theme name
 
 ############################
 ## LANGUAGE
