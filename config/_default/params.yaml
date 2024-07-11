@@ -68,7 +68,7 @@ features:
   privacy_pack:
     enable: false
   repository:
-    url: 'https://muskanmanav16.github.io/'
+    url: 'https://github.com/muskanmanav16/muskanmanav16.github.io'
     content_dir: content
     branch: main
   avatar:
