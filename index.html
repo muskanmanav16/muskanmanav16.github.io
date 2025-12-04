@@ -2,115 +2,1005 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Muskan Manav | Data & Business Analyst</title>
+  <title>Muskan Manav | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1120;
+      --card: #0f172a;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.25);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 55%);
+      color: var(--text);
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
-    header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    h1 {
-      margin-bottom: 5px;
-    }
-    .tagline {
-      color: #555;
-      font-size: 0.95rem;
-    }
-    section {
-      margin-bottom: 25px;
-    }
-    h2 {
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 5px;
-      margin-bottom: 10px;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    .contact a {
+
+    a {
+      color: var(--accent);
       text-decoration: none;
     }
-    .pill {
-      display: inline-block;
-      padding: 4px 10px;
-      margin: 3px;
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+    }
+
+    /* NAVBAR */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.95),
+        rgba(15, 23, 42, 0.7),
+        transparent
+      );
+      margin: -24px -20px 24px;
+      padding: 14px 20px 10px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .nav-logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--muted);
+      text-decoration: none;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent), #a855f7);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 32px;
+      margin-top: 40px;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-left h1 {
+      font-size: clamp(2.3rem, 3vw + 1rem, 3rem);
+      margin: 0 0 10px;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(120deg, #38bdf8, #a855f7, #f97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-tagline {
+      color: var(--muted);
+      font-size: 0.98rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .hero-pill {
       border-radius: 999px;
-      border: 1px solid #ccc;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .hero-text {
+      font-size: 0.95rem;
+      color: var(--text);
+      max-width: 680px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8, #a855f7);
+      border-color: transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+      background-color: rgba(15, 23, 42, 0.9);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      background: linear-gradient(135deg, #0ea5e9, #c4b5fd);
+    }
+
+    .hero-right {
+      display: flex;
+      justify-content: center;
+    }
+
+    .profile-card {
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 60%),
+        linear-gradient(145deg, var(--bg-alt), #020617);
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 24px 18px 18px;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.9);
+      width: 100%;
+      max-width: 320px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0 0, rgba(248, 250, 252, 0.06), transparent 55%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 3px solid rgba(56, 189, 248, 0.7);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
+      margin-bottom: 10px;
+      background: #020617;
+    }
+
+    .profile-role {
       font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .profile-location {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .profile-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .profile-tag {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .profile-links a {
+      display: inline-block;
+      font-size: 0.82rem;
+      color: var(--accent);
+      margin: 0 4px;
+    }
+
+    /* SECTIONS */
+    section {
+      margin-top: 56px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 1.4rem;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      font-size: 0.96rem;
+      max-width: 640px;
+    }
+
+    /* JOURNEY TIMELINE */
+    .timeline {
+      margin-top: 24px;
+      border-left: 1px solid rgba(148, 163, 184, 0.4);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: -6px;
+      top: 0;
+      bottom: 0;
+      border-left: 2px dashed rgba(56, 189, 248, 0.4);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 24px;
+      padding-left: 4px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -14px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+
+    .timeline-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      margin-bottom: 2px;
+    }
+
+    .timeline-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .timeline-body {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    /* EXPERIENCE CARDS */
+    .card-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    @media (max-width: 900px) {
+      .card-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 18px 18px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), transparent 60%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .card-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 6px 0 10px;
+    }
+
+    .card-tag {
+      font-size: 0.76rem;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+    }
+
+    .card ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      font-size: 0.9rem;
+    }
+
+    .card li {
+      margin-bottom: 4px;
+    }
+
+    /* SKILLS */
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .skills-columns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .skills-columns {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .skills-columns {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .skills-column-title {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .skills-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .skills-list li {
+      margin-bottom: 4px;
+    }
+
+    /* PROJECTS */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .project-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .project-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 14px 14px 12px;
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .project-title {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .project-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .project-desc {
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+
+    /* CONTACT */
+    .contact-card {
+      margin-top: 22px;
+      padding: 18px 18px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 55%),
+        rgba(15, 23, 42, 0.9);
+      font-size: 0.94rem;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .contact-item {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .contact-item strong {
+      color: var(--text);
+    }
+
+    /* SCROLL TO TOP */
+    .to-top {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.92);
+      color: var(--accent);
+      font-size: 20px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.9);
+    }
+
+    .to-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .to-top:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Muskan Manav</h1>
-    <p class="tagline">IT Business Analyst & Data Analyst | Cologne, Germany</p>
-    <p class="contact">
-      <a href="mailto:muskanmanav16@gmail.com">muskanmanav16@gmail.com</a> ·
-      <a href="https://www.linkedin.com/in/muskan-manav-a96a7b192" target="_blank">LinkedIn</a> ·
-      GitHub
-    </p>
-  </header>
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <span>MM</span> Muskan Manav
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#journey">Journey</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-  <section>
-    <h2>About Me</h2>
-    <p>
-      I am an IT Business Analyst with experience in data analysis, underwriting automation,
-      and business transformation projects. I work at the intersection of business and
-      technology, designing processes, requirements, and data logic that support scalable,
-      automation-driven solutions.
-    </p>
-  </section>
+  <main class="page">
+    <!-- HERO -->
+    <section class="hero" id="about">
+      <div class="hero-left">
+        <p class="section-label">Portfolio</p>
+        <h1>
+          Hi, I’m <span class="hero-gradient">Muskan Manav</span>
+        </h1>
+        <p class="hero-tagline">
+          IT Business Analyst & Data Analyst working on underwriting automation, buyer review,
+          and data-driven decision systems.
+        </p>
 
-  <section>
-    <h2>Experience</h2>
-    <h3>IT Business Analyst – Atradius (2025 – Present)</h3>
-    <ul>
-      <li>Leading analysis for automatic buyer review, underwriting automation, and internal buyer rating projects.</li>
-      <li>Defining business logic and requirements that guide development teams.</li>
-      <li>Contributing initial Databricks logic and supporting Agile delivery (sprint planning, backlog refinement).</li>
-    </ul>
+        <div class="hero-pill-row">
+          <span class="hero-pill">IT Business Analysis</span>
+          <span class="hero-pill">Data & Machine Learning</span>
+          <span class="hero-pill">Agile Delivery</span>
+          <span class="hero-pill">End-to-End Transformation</span>
+        </div>
 
-    <h3>Data Analyst – Atradius (2022 – 2025)</h3>
-    <ul>
-      <li>Built dashboards and data pipelines to support underwriting and risk assessment.</li>
-      <li>Improved risk model accuracy and reduced manual analysis through automation.</li>
-    </ul>
-  </section>
+        <p class="hero-text">
+          I sit at the intersection of <strong>business</strong>, <strong>data</strong>, and
+          <strong>technology</strong>. My work focuses on turning complex underwriting and risk
+          processes into scalable, automation-ready systems – while making sure business users,
+          developers, and data teams all speak the same language.
+        </p>
 
-  <section>
-    <h2>Skills</h2>
-    <span class="pill">Business Analysis</span>
-    <span class="pill">Agile / Scrum</span>
-    <span class="pill">SQL</span>
-    <span class="pill">Python</span>
-    <span class="pill">Databricks (logic prototyping)</span>
-    <span class="pill">Tableau / Power BI</span>
-    <span class="pill">Stakeholder Management</span>
-    <span class="pill">Process Mapping</span>
-  </section>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Let’s connect</a>
+          <a class="btn" href="#journey">My journey</a>
+        </div>
+      </div>
 
-  <section>
-    <h2>Projects</h2>
-    <ul>
-      <li><strong>Automatic Underwriting & Buyer Review:</strong> Business analysis and logic definition for automation of underwriting processes.</li>
-      <li><strong>Biomedical Search Engine:</strong> NER-based search for scientific literature.</li>
-      <li><strong>Sentiment Analysis on Drug Reviews:</strong> Used machine learning and transformers for text classification.</li>
-    </ul>
-  </section>
+      <aside class="hero-right">
+        <div class="profile-card">
+          <img
+            src="profile.jpg"
+            alt="Photo of Muskan Manav"
+            class="avatar"
+          />
+          <div class="profile-role">IT Business Analyst · Data Analyst</div>
+          <div class="profile-location">Cologne, Germany · Open to Europe-wide roles</div>
+          <div class="profile-tags">
+            <span class="profile-tag">Automatic Underwriting</span>
+            <span class="profile-tag">Buyer Rating</span>
+            <span class="profile-tag">Databricks</span>
+          </div>
+          <div class="profile-links">
+            <a href="mailto:muskanmanav16@gmail.com">Email</a> ·
+            <a href="https://www.linkedin.com/in/muskan-manav-a96a7b192" target="_blank">LinkedIn</a> ·
+            <a href="https://github.com/muskanmanav16" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </aside>
+    </section>
 
-  <section>
-    <h2>Contact</h2>
-    <p>
-      Feel free to reach out for roles in IT Business Analysis, Data Analysis, or
-      transformation-focused positions.
-    </p>
-  </section>
+    <!-- JOURNEY -->
+    <section id="journey">
+      <p class="section-label">Journey</p>
+      <h2>From life sciences to underwriting automation</h2>
+      <p class="section-intro">
+        My career started in the lab, moved into biomedical data science, and eventually crossed
+        into the world of credit risk and underwriting. The common thread is curiosity – using
+        data and systems thinking to understand how things work and how they can work better.
+      </p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">2018 – 2021 · University of Delhi</div>
+          <div class="timeline-title">B.Sc. Microbiology</div>
+          <p class="timeline-body">
+            Learned to think like a scientist: forming hypotheses, designing experiments, and
+            working with messy real-world data in the lab. This is where I first realised I was
+            drawn to patterns and analysis more than pipettes.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">2021 – 2024 · University of Bonn</div>
+          <div class="timeline-title">M.Sc. Life Science Informatics</div>
+          <p class="timeline-body">
+            Transitioned into biomedical data science, working on projects like graph-based
+            genetics search, NLP for biomedical literature, and sentiment analysis on drug
+            reviews. I discovered that I love building bridges between domain experts,
+            researchers, and engineering teams.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">2022 – 2025 · Atradius</div>
+          <div class="timeline-title">Data Analyst → IT Business Analyst</div>
+          <p class="timeline-body">
+            Started with dashboards, data pipelines, and credit risk models. Over time, I moved
+            closer to the business side, helping define underwriting logic, shaping automation
+            requirements, and guiding developers through the “why” behind our systems.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">Today</div>
+          <div class="timeline-title">Technical & business translator</div>
+          <p class="timeline-body">
+            Now I work at the heart of transformation projects, converting requirements into
+            data flows, rules, and logic. My goal is to grow into a technical leader who can
+            design systems end-to-end – from business vision to architecture and delivery.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <p class="section-label">Experience</p>
+      <h2>What I’m working on</h2>
+      <p class="section-intro">
+        I currently split my time across two major internal transformation programmes at
+        Atradius, where I act as the bridge between underwriting teams, data engineers, and
+        developers.
+      </p>
+
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">IT Business Analyst</div>
+              <div class="card-subtitle">Atradius · 2025 – Present</div>
+            </div>
+            <span class="card-subtitle">Automatic Underwriting & Buyer Rating</span>
+          </div>
+          <div class="card-tags">
+            <span class="card-tag">Underwriting Automation</span>
+            <span class="card-tag">Databricks Logic</span>
+            <span class="card-tag">Agile</span>
+          </div>
+          <ul>
+            <li>
+              Lead analysis for two parallel programmes: automatic buyer review & underwriting
+              automation, and an internal buyer rating system built in R.
+            </li>
+            <li>
+              Define business logic, event flows, and decision rules that developers then
+              translate into data pipelines and services.
+            </li>
+            <li>
+              Designed the initial logic framework in Databricks that forms the starting point
+              for ongoing transformation work.
+            </li>
+            <li>
+              Act as the go-to person for DEV teams: clarifying scenarios, edge cases, and data
+              questions to keep sprints unblocked.
+            </li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Data Analyst & Research Experience</div>
+              <div class="card-subtitle">Atradius · Fraunhofer · University of Bonn</div>
+            </div>
+          </div>
+          <div class="card-tags">
+            <span class="card-tag">Risk Analytics</span>
+            <span class="card-tag">ML & NLP</span>
+            <span class="card-tag">Dashboards</span>
+          </div>
+          <ul>
+            <li>
+              Developed risk analytics dashboards and improved credit evaluation models, helping
+              reduce manual underwriting steps.
+            </li>
+            <li>
+              Worked on RNN/LSTM models for behavioural neuroscience data and built search tools
+              for biomedical literature using NER.
+            </li>
+            <li>
+              Enjoy designing not just models but the surrounding process: data preparation,
+              documentation, and how stakeholders interpret results.
+            </li>
+            <li>
+              Frequently play the “explainer” role – translating complex results into stories
+              that stakeholders can act on.
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <p class="section-label">Projects</p>
+      <h2>Selected work</h2>
+      <p class="section-intro">
+        A snapshot of projects that reflect how I think: connecting data, humans, and systems to
+        make better decisions – whether in healthcare, research, or credit risk.
+      </p>
+
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="project-title">Automatic Underwriting & Buyer Review</div>
+          <div class="project-meta">Atradius · IT Business Analysis</div>
+          <p class="project-desc">
+            Co-designed business rules and decision logic for an automatic underwriting engine,
+            aligning stakeholders across risk, finance, and development. My focus was on turning
+            expert judgement into structured, data-driven flows.
+          </p>
+        </article>
+
+        <article class="project-card">
+          <div class="project-title">Internal Buyer Rating in R</div>
+          <div class="project-meta">Atradius · Scoring Logic</div>
+          <p class="project-desc">
+            Helped shape the internal buyer rating framework used to evaluate counterparties.
+            Collaborated with developers and analysts to clarify how ratings should react to
+            new information and edge cases.
+          </p>
+        </article>
+
+        <article class="project-card">
+          <div class="project-title">Biomedical Search Engine (MAP-D)</div>
+          <div class="project-meta">University of Bonn & Fraunhofer</div>
+          <p class="project-desc">
+            Built a search interface for biomedical papers using named entity recognition,
+            enabling researchers to move from keyword search to concept-based discovery.
+          </p>
+        </article>
+
+        <article class="project-card">
+          <div class="project-title">DisGeNET · Neo4j Integration</div>
+          <div class="project-meta">Python · Graph Databases</div>
+          <p class="project-desc">
+            Created a Python package to load DisGeNET data into Neo4j, automating RDF handling
+            and graph construction for genetics research workflows.
+          </p>
+        </article>
+
+        <article class="project-card">
+          <div class="project-title">Drug Review Sentiment Analysis</div>
+          <div class="project-meta">NLP · Transformers</div>
+          <p class="project-desc">
+            Analysed patient drug reviews using transformer models (including BioElectra) to
+            classify real-world feedback into sentiment categories for better insight into
+            treatment experience.
+          </p>
+        </article>
+
+        <article class="project-card">
+          <div class="project-title">Data Storytelling Experiments</div>
+          <div class="project-meta">Personal · Ongoing</div>
+          <p class="project-desc">
+            I often prototype dashboards and small analysis notebooks just to explore
+            questions—from “What makes a good risk metric?” to “How can we explain model
+            results visually to non-technical users?”.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <p class="section-label">Skills</p>
+      <h2>How I work</h2>
+      <p class="section-intro">
+        I’m not just interested in tools – I’m interested in how they fit together to solve a
+        problem. Below is a snapshot of the skills I use most often.
+      </p>
+
+      <div class="pill-row">
+        <div class="pill"><span class="pill-dot"></span> Translating business to technical</div>
+        <div class="pill"><span class="pill-dot"></span> Structuring complex requirements</div>
+        <div class="pill"><span class="pill-dot"></span> Data-driven decision making</div>
+        <div class="pill"><span class="pill-dot"></span> Underwriting & risk workflows</div>
+      </div>
+
+      <div class="skills-columns">
+        <div>
+          <div class="skills-column-title">Analysis & Data</div>
+          <ul class="skills-list">
+            <li>SQL (queries, joins, data quality checks)</li>
+            <li>Python (pandas, basic ML, data prep)</li>
+            <li>Databricks for logic prototyping</li>
+            <li>Experimental design & A/B thinking</li>
+          </ul>
+        </div>
+        <div>
+          <div class="skills-column-title">Business & Product</div>
+          <ul class="skills-list">
+            <li>Requirements gathering & refinement</li>
+            <li>Process mapping and user journeys</li>
+            <li>Stakeholder interviews & workshops</li>
+            <li>Documentation in Confluence & Jira</li>
+          </ul>
+        </div>
+        <div>
+          <div class="skills-column-title">Delivery & Collaboration</div>
+          <ul class="skills-list">
+            <li>Agile ways of working (sprints, planning)</li>
+            <li>Working across data, DEV & business teams</li>
+            <li>Explaining complex topics simply</li>
+            <li>Supporting testing with scenarios & edge cases</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <p class="section-label">Contact</p>
+      <h2>Let’s work together</h2>
+      <p class="section-intro">
+        I’m happy to connect about roles in IT business analysis, data-driven transformation, or
+        projects where you need someone who can understand both the model and the meeting room.
+      </p>
+
+      <div class="contact-card">
+        <p>
+          The best way to reach me is via email or LinkedIn. I’m open to opportunities in
+          Germany and across Europe, especially in teams building data-centric products,
+          platforms, or risk/underwriting solutions.
+        </p>
+        <div class="contact-row">
+          <div class="contact-item">
+            <strong>Email:</strong>
+            <a href="mailto:muskanmanav16@gmail.com">muskanmanav16@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <strong>LinkedIn:</strong>
+            <a href="https://www.linkedin.com/in/muskan-manav-a96a7b192" target="_blank">
+              muskan-manav-a96a7b192
+            </a>
+          </div>
+          <div class="contact-item">
+            <strong>GitHub:</strong>
+            <a href="https://github.com/muskanmanav16" target="_blank">muskanmanav16</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Muskan Manav · Built with HTML & CSS · Hosted on GitHub Pages
+    </footer>
+  </main>
+
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+  <script>
+    // Update year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Show "back to top" button on scroll
+    const toTop = document.getElementById("toTop");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 350) {
+        toTop.classList.add("visible");
+      } else {
+        toTop.classList.remove("visible");
+      }
+    });
+    toTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
 </body>
 </html>
